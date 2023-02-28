@@ -1,0 +1,20 @@
+
+public class Ejercicios {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int numeroInicio = 5;
+		int numeroFin = 14;
+		
+		while(numeroInicio == 5) {
+			numeroInicio++;
+			System.out.println(numeroInicio);
+			if(numeroInicio == numeroFin) {
+				System.out.println("Fin");
+			}
+		}
+		
+		
+	}
+
+}
