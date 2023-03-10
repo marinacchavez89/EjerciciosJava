@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="public static void main(String[] args) {"/>
+		<item key="selection" value="&#x09;1. Utilizando solo tipos primitivos, String (solo usar método length), vectores,"/>
 		<list key="findhistory">
+			<item value="&#x09;1. Utilizando solo tipos primitivos, String (solo usar método length), vectores,"/>
 			<item value="public static void main(String[] args) {"/>
 		</list>
 	</section>
