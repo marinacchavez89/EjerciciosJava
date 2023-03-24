@@ -156,6 +156,4 @@ public class CarritoCompras {
 	            return super.getPorcentajeDescuento();
 	        }
 	    }
-	}	
-
-}
+	}
