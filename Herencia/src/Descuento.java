@@ -1,12 +1,11 @@
-
 public abstract class Descuento {
-	protected double valorDescuento;
+    protected double valorDescuento;
 
     public Descuento(double valorDescuento) {
         this.valorDescuento = valorDescuento;
     }
 
-    public abstract double aplicarDescuento(double precio);
+    public abstract double aplicarDescuento(double precio) throws DescuentoException;
 
     public double getValorDescuento() {
         return valorDescuento;

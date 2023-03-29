@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarritoTest {
 
     @Test
-    public void testPrecioSinDescuento() {
+    public void testPrecioSinDescuento() throws CarritoException {
         Carrito carrito = new Carrito();
         carrito.agregarProducto(10);
         carrito.agregarProducto(20);
@@ -14,7 +14,7 @@ public class CarritoTest {
     }
 
     @Test
-    public void testDescuentoFijo() {
+    public void testDescuentoFijo() throws CarritoException {
         Carrito carrito = new Carrito();
         carrito.agregarProducto(10);
         carrito.agregarProducto(20);
@@ -27,7 +27,7 @@ public class CarritoTest {
     }
 
     @Test
-    public void testDescuentoPorcentaje() {
+    public void testDescuentoPorcentaje() throws CarritoException {
         Carrito carrito = new Carrito();
         carrito.agregarProducto(10);
         carrito.agregarProducto(20);
@@ -37,9 +37,9 @@ public class CarritoTest {
         carrito.setDescuento(descuento);
         assertEquals(48, carrito.calcularPrecio(), 0.1);
     }
-    
+
     @Test
-    public void testDescuentoPorcentajeConTope() {
+    public void testDescuentoPorcentajeConTope() throws CarritoException {
         Carrito carrito = new Carrito();
         carrito.agregarProducto(10);
         carrito.agregarProducto(20);
@@ -50,5 +50,34 @@ public class CarritoTest {
 
         assertEquals(50, carrito.calcularPrecio(), 0.1);
     }
-   
+
+    @Test
+    public void testCarritoConPrecioCero() throws CarritoException {
+        Carrito carrito = new Carrito();
+        carrito.agregarProducto(0);
+        carrito.agregarProducto(0);
+        carrito.agregarProducto(0);
+
+        Descuento descuento = new DescuentoFijo(5);
+        carrito.setDescuento(descuento);
+
+        assertThrows(CarritoException.class, () -> {
+            carrito.calcularPrecio();
+        });
+    }
+
+    @Test
+    public void testDescuentoNegativo() throws CarritoException {
+        Carrito carrito = new Carrito();
+        carrito.agregarProducto(10);
+        carrito.agregarProducto(20);
+        carrito.agregarProducto(30);
+
+        Descuento descuento = new DescuentoFijo(100);
+        carrito.setDescuento(descuento);
+
+        assertThrows(CarritoException.class, () -> {
+            carrito.calcularPrecio();
+        });
+    }
 }
