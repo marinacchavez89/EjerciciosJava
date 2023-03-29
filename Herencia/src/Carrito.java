@@ -1,46 +1,26 @@
-
+import java.util.ArrayList;
+import java.util.List;
+	
 public class Carrito {
 
-	private int precioTotal;
-    private boolean descuentoFijo;
-    private double valorDescuento;
+	    private List<Double> productos = new ArrayList<>();
+	    private Descuento descuento;
 
-    public Carrito() {
-        precioTotal = 0;
-        descuentoFijo = false;
-        valorDescuento = 0;
-    }
+	    public void agregarProducto(double precio) {
+	        productos.add(precio);
+	    }
 
-    public void agregarProducto(int precio) {
-        precioTotal += precio;
-    }
+	    public void setDescuento(Descuento descuento) {
+	        this.descuento = descuento;
+	    }
 
-    public void aplicarDescuentoFijo(double valor) {
-        descuentoFijo = true;
-        valorDescuento = valor;
-    }
-
-    public void aplicarDescuentoPorcentaje(double porcentaje) {
-        double descuento = (precioTotal * porcentaje) / 100;
-        precioTotal -= descuento;
-    }
-
-    public void aplicarDescuentoPorcentajeConTope(double porcentaje, double tope) {
-        double descuento = (precioTotal * porcentaje) / 100;
-        if (descuento > tope) {
-            descuento = tope;
-        }
-        precioTotal -= descuento;
-    }
-
-    public int precio() {
-        int precioFinal = precioTotal;
-        if (descuentoFijo) {
-            precioFinal -= valorDescuento;
-        }
-        return precioFinal;
-    }
-
+	    public double calcularPrecio() {
+	        double precioTotal = productos.stream().mapToDouble(Double::doubleValue).sum();
+	        if (descuento != null) {
+	            precioTotal = descuento.aplicarDescuento(precioTotal);
+	        }
+	        return precioTotal;
+	    }
 }
 	
 	

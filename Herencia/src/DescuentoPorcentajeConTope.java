@@ -1,20 +1,18 @@
+public class DescuentoPorcentajeConTope extends DescuentoPorcentaje {
 
-public class DescuentoPorcentajeConTope {
-	
-	private double porcentaje;
     private double tope;
 
-    public DescuentoPorcentajeConTope(double porcentaje, double tope) {
-        this.porcentaje = porcentaje;
+    public DescuentoPorcentajeConTope(double valorDescuento, double tope) {
+        super(valorDescuento);
         this.tope = tope;
     }
 
+    @Override
     public double aplicarDescuento(double precio) {
-        double descuento = (precio * porcentaje) / 100;
+        double descuento = super.aplicarDescuento(precio);
         if (descuento > tope) {
-            descuento = tope;
+            return precio - tope;
         }
-        return descuento;
+        return precio - descuento;
     }
-
 }
